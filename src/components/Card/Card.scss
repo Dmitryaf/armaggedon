@@ -1,0 +1,94 @@
+@import '../../scss/variables';
+
+.card {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  border: 1px solid $black;
+  border-radius: 10px;
+  background: $greedGradiend;
+  padding: 21px 27px 29px;
+  margin-bottom: 16px;
+  overflow: hidden;
+
+  &::before {
+    content: url('images/dino.svg');
+    position: absolute;
+    left: 15px;
+    bottom: 0;
+    width: 56px;
+    height: 48px;
+  }
+
+  &::after {
+    content: url('images/asteroid.svg');
+    position: absolute;
+    top: 26px;
+    left: 121px;
+    width: 71px;
+    z-index: 0;
+  }
+
+  &_asteroid_md {
+    &::after {
+      top: -80px;
+      left: 72px;
+      width: 186px;
+    }
+  }
+
+  &_asteroid_lg {
+    background: $pinkGradient;
+
+    &::after {
+      top: -487px;
+      left: -99px;
+      width: 598px;
+    }
+  }
+
+  &__info {
+    flex-grow: 1;
+    max-width: 290px;
+    margin-right: 100px;
+    z-index: 1;
+
+  }
+
+  &__title {
+    display: inline-block;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    border-bottom: 2px solid $black;
+    margin-bottom: 20px;
+  }
+
+  &__row {
+    display: flex;
+    margin-bottom: 13px;
+  }
+
+  &__row-line {
+    flex-grow: 1;
+    border-bottom: 1px dotted $black;
+    margin: 0 0 3px 3px;
+  }
+
+  &__rating {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 19px;
+  }
+
+  &__rating-title {
+    font-weight: normal;
+    font-size: 1rem;
+    margin-bottom: 5px;
+  }
+
+  &__rating-text {
+    font-weight: bold;
+    margin-bottom: 12px;
+  }
+}
