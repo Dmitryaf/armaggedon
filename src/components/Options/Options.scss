@@ -1,0 +1,27 @@
+@import '../../scss/variables';
+
+.options {
+  &__btn {
+    font-family: Helvetica,
+      Arial,
+      sans-serif;
+    font-size: 1rem;
+    border: none;
+    border-bottom: 2px solid $gray;
+    background: none;
+    margin-right: 5px;
+    cursor: pointer;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &_active {
+      border-color: transparent;
+
+      & .options__btn-text {
+        font-weight: bold;
+      }
+    }
+  }
+}
