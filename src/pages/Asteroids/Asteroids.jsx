@@ -8,13 +8,14 @@ import './Asteroids.scss';
 
 export default function Asteroids() {
   const dispatch = useDispatch();
-  const asteroidsData = useSelector((state) => state.data);
+  const asteroidsData = useSelector((state) => state.dataReducer.data);
+  const asteroidsItems = asteroidsData.map((asteroid) => {
+    return <Card key={asteroid.id} data={asteroid} />;
+  });
 
   useEffect(() => {
     dispatch(getApiData());
   }, []);
-
-  console.log(asteroidsData);
 
   return (
     <div className='asteroids'>
@@ -22,11 +23,7 @@ export default function Asteroids() {
         <Filter />
         <Options />
       </div>
-      <div className='asteroids__list'>
-        <Card />
-        <Card size='md' />
-        <Card size='lg' />
-      </div>
+      <div className='asteroids__list'>{asteroidsItems}</div>
     </div>
   );
 }
