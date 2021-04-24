@@ -9,9 +9,16 @@ import './Asteroids.scss';
 export default function Asteroids() {
   const dispatch = useDispatch();
   const asteroidsData = useSelector((state) => state.dataReducer.data);
-  const asteroidsItems = asteroidsData.map((asteroid) => {
-    return <Card key={asteroid.id} data={asteroid} />;
-  });
+  const isDanger = useSelector((state) => state.dataReducer.isDanger);
+  let asteroidsItems;
+
+  if (isDanger) {
+    asteroidsItems = [...asteroidsData].filter((asteroid) => {
+      return asteroid.is_potentially_hazardous_asteroid === isDanger;
+    });
+  } else {
+    asteroidsItems = asteroidsData;
+  }
 
   useEffect(() => {
     dispatch(getApiData());
@@ -23,7 +30,11 @@ export default function Asteroids() {
         <Filter />
         <Options />
       </div>
-      <div className='asteroids__list'>{asteroidsItems}</div>
+      <div className='asteroids__list'>
+        {asteroidsItems.map((asteroid) => {
+          return <Card key={asteroid.id} id={asteroid.id} data={asteroid} />;
+        })}
+      </div>
     </div>
   );
 }
