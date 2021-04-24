@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import dataReducer from './dataReducer';
 
 const rootReducer = combineReducers({
-  data: dataReducer,
+  dataReducer: dataReducer,
 });
 
 const store = createStore(
