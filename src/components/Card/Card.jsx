@@ -1,21 +1,27 @@
 import React from 'react';
+import { filterDate, getCurrentDate, transformDate } from '../../utils/utils';
 import './Card.scss';
 
 export default function Card(props) {
-  const { size } = props;
-  let asteroidClass = '';
-  if (size) {
-    asteroidClass = size === 'md' ? 'card_asteroid_md' : 'card_asteroid_lg';
-  }
+  // console.log(props.data);
+  const { name_limited, estimated_diameter, close_approach_data } = props.data;
+  const closestDateApproach = filterDate(close_approach_data)[0]
+    .close_approach_date;
+  const transformedDate = transformDate(closestDateApproach);
+  console.log(getCurrentDate(closestDateApproach));
 
   return (
-    <div className={`card ${asteroidClass}`}>
+    <div className='card'>
       <div className='card__info'>
-        <h2 className='card__title'>2021 fq</h2>
+        <h2 className='card__title'>
+          <a href='/asteroid' className='card__link'>
+            {name_limited}
+          </a>
+        </h2>
         <div className='card__row'>
           <div className='card__row-name'>Дата</div>
           <span className='card__row-line'></span>
-          <div className='card__row-value'>12 сентября 2021</div>
+          <div className='card__row-value'>{transformedDate}</div>
         </div>
         <div className='card__row'>
           <div className='card__row-name'>Расстояние</div>
