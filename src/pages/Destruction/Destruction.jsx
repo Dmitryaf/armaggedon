@@ -7,7 +7,7 @@ export default function Destruction() {
   const destructionCart = useSelector(
     (state) => state.dataReducer.destructionCart
   );
-  console.log(destructionCart);
+
   return (
     <div className='destruction'>
       <div className='destruction__list'>

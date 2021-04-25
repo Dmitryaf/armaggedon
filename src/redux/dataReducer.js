@@ -80,11 +80,11 @@ export const toggleIsDanger = (isDanger) => ({
   type: TOGGLE_IS_DANGER,
   payload: isDanger,
 });
-export const addToDesctructionCart = (id) => ({
+export const addToDestructionCart = (id) => ({
   type: ADD_TO_DESTRUCTION_CART,
   id,
 });
-export const deleteFromDesctructionCart = (id) => ({
+export const deleteFromDestructionCart = (id) => ({
   type: DELETE_FROM_DESTRUCTION_CART,
   id,
 });

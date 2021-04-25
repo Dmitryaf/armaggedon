@@ -27,6 +27,7 @@ class Utils {
     return params.replace(/[г.]/g, '');
   }
 
+  // Получает время из даты приходящей из API
   static getTime(transformDate) {
     const date = new Date(transformDate);
     const params = date.toLocaleString('ru', {
@@ -41,12 +42,14 @@ class Utils {
     return Math.floor(transformDistanse).toLocaleString('ru');
   }
 
+  // Возвращает расстояние в указаной  единице измерения
   static getDistance(measureDistance, distance) {
     return measureDistance === 'км'
       ? `${this.transformDistance(distance.kilometers)}`
       : `${this.transformDistance(distance.lunar)}`;
   }
 
+  // Возвращает класс в зависимости от значения параметров
   static asteroidClass(asteroidSize, isDanger) {
     if (isDanger) {
       return 'card_asteroid_lg';

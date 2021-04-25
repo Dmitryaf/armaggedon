@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ApproachList from '../../components/ApproachList/ApproachList';
-import { addToDesctructionCart } from '../../redux/dataReducer';
+import { addToDestructionCart } from '../../redux/dataReducer';
 import Utils from '../../utils/utils';
 import './AsteroidItem.scss';
 
@@ -42,7 +42,7 @@ export default function AsteroidItem() {
   };
 
   const addToCart = (elementId) => {
-    dispatch(addToDesctructionCart(elementId));
+    dispatch(addToDestructionCart(elementId));
   };
 
   useEffect(() => {

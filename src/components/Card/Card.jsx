@@ -2,8 +2,8 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import {
-  addToDesctructionCart,
-  deleteFromDesctructionCart,
+  addToDestructionCart,
+  deleteFromDestructionCart,
   setCurrentItem,
 } from '../../redux/dataReducer';
 import Utils from '../../utils/utils';
@@ -43,11 +43,11 @@ export default function Card(props) {
   };
 
   const addToCart = (elementId) => {
-    dispatch(addToDesctructionCart(elementId));
+    dispatch(addToDestructionCart(elementId));
   };
 
   const deleteFromCart = (elementId) => {
-    dispatch(deleteFromDesctructionCart(elementId));
+    dispatch(deleteFromDestructionCart(elementId));
   };
 
   const setItem = () => {
