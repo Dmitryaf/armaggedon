@@ -1,0 +1,48 @@
+@import '../../../scss/variables';
+
+.approach-item {
+  border-bottom: 1px solid $black;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+
+    @media (max-width: 500px) {
+      flex-direction: column;
+    }
+  }
+
+  &__date {
+    margin-bottom: 20px;
+  }
+
+  &__header-title {
+    font-size: 1.125rem;
+    font-weight: 500;
+    margin-bottom: 15px;
+
+    &_right {
+      text-align: right;
+
+      @media (max-width: 500px) {
+        text-align: left;
+      }
+    }
+  }
+
+
+
+  &__row {
+    display: flex;
+    margin-bottom: 13px;
+  }
+
+  &__row-line {
+    flex-grow: 1;
+    border-bottom: 1px dotted $black;
+    min-width: 100px;
+    margin: 0 0 3px 3px;
+  }
+}
