@@ -1,0 +1,23 @@
+.card-page {
+  margin-top: 30px;
+
+  &__title,
+  &__subtitle {
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+
+  &__title {
+    font-size: 1.75rem;
+  }
+
+  &__subtitle {
+    font-size: 1.5rem;
+  }
+
+  &__empty {
+    font-size: 1.25rem;
+    text-align: center;
+  }
+}
