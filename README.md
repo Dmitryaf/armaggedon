@@ -2,7 +2,7 @@
 
 Установка модулей `npm i`
 
-Запуск dev сервера `npm run dev`
+Запуск dev сервера `npm run start`
 
 Сборка проекта `npm run build`
 
