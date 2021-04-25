@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ApproachList from '../../components/ApproachList/ApproachList';
 import { addToDesctructionCart } from '../../redux/dataReducer';
@@ -7,7 +8,7 @@ import './AsteroidItem.scss';
 
 export default function AsteroidItem() {
   const dispatch = useDispatch();
-  const cardData = useSelector((state) => state.dataReducer.currentItem);
+  const cardData = JSON.parse(localStorage.getItem('currentItem'));
   const measureData = useSelector((state) => state.dataReducer.measure);
 
   const {
@@ -43,6 +44,12 @@ export default function AsteroidItem() {
   const addToCart = (elementId) => {
     dispatch(addToDesctructionCart(elementId));
   };
+
+  useEffect(() => {
+    return () => {
+      localStorage.removeItem('currentItem');
+    };
+  }, []);
 
   return (
     <div className='card-page'>

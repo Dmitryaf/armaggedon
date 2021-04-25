@@ -40,6 +40,7 @@ export default function dataReducer(state = initialState, action) {
           return item.id === action.id;
         }
       });
+
       return {
         ...state,
         destructionCart: existedItem
@@ -59,6 +60,7 @@ export default function dataReducer(state = initialState, action) {
         offset: state.offset + 5,
       };
     case SET_CURRENT_ITEM:
+      localStorage.setItem('currentItem', JSON.stringify(action.payload));
       return {
         ...state,
         currentItem: action.payload,
