@@ -2,7 +2,7 @@ import axios from 'axios';
 import { setData } from '../redux/dataReducer';
 
 const apiUrl =
-  'https://api.nasa.gov/neo/rest/v1/neo/browse?api_key=MW66liYtYVgySZw3GTc9yAnRfPrh0LKgGc4rRlvd';
+  'https://api.nasa.gov/neo/rest/v1/neo/browse?api_key=JdZrMyQiNT5Zg1vwjiY2H2UCEWw8K7ZnTQdm8rww';
 
 export function getApiData() {
   return async (dispatch) => {
