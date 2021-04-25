@@ -1,15 +1,19 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { setOffset } from '../../redux/dataReducer';
 import { getApiData } from '../../api/api';
 import Filter from '../../components/Filter/Filter';
 import Options from '../../components/Options/Options';
 import Card from '../../components/Card/Card';
+import Preloader from '../../components/Preloader/Preloader';
 import './Asteroids.scss';
 
 export default function Asteroids() {
   const dispatch = useDispatch();
   const asteroidsData = useSelector((state) => state.dataReducer.data);
   const isDanger = useSelector((state) => state.dataReducer.isDanger);
+  const offset = useSelector((state) => state.dataReducer.offset);
+
   let asteroidsItems;
 
   if (isDanger) {
@@ -20,9 +24,29 @@ export default function Asteroids() {
     asteroidsItems = asteroidsData;
   }
 
+  const offsetItems = asteroidsItems.slice(0, offset);
+
+  const scrollHandler = (e) => {
+    if (
+      e.target.documentElement.scrollHeight -
+        (e.target.documentElement.scrollTop + window.innerHeight) <
+      50
+    ) {
+      dispatch(setOffset());
+    }
+  };
+
   useEffect(() => {
     dispatch(getApiData());
   }, []);
+
+  useEffect(() => {
+    document.addEventListener('scroll', scrollHandler);
+
+    return () => {
+      document.removeEventListener('scroll', scrollHandler);
+    };
+  }, [scrollHandler]);
 
   return (
     <div className='asteroids'>
@@ -31,8 +55,17 @@ export default function Asteroids() {
         <Options />
       </div>
       <div className='asteroids__list'>
-        {asteroidsItems.map((asteroid) => {
-          return <Card key={asteroid.id} id={asteroid.id} data={asteroid} />;
+        {offsetItems.length < 1 && <Preloader />}
+
+        {offsetItems.map((asteroid) => {
+          return (
+            <Card
+              key={asteroid.id}
+              id={asteroid.id}
+              data={asteroid}
+              isDestruction={false}
+            />
+          );
         })}
       </div>
     </div>
