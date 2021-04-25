@@ -17,14 +17,23 @@ class Utils {
   }
 
   // Трансформирует приходящую дату в нужный формат
-  static transformDate(transformDate) {
+  static getTransformDate(transformDate) {
     const date = new Date(transformDate);
     const params = date.toLocaleString('ru', {
       day: 'numeric',
       month: 'long',
       year: 'numeric',
     });
-    return params.replace(/[\г.]/g, '');
+    return params.replace(/[г.]/g, '');
+  }
+
+  static getTime(transformDate) {
+    const date = new Date(transformDate);
+    const params = date.toLocaleString('ru', {
+      hour: 'numeric',
+      minute: 'numeric',
+    });
+    return params;
   }
 
   // Трансформирует приходящее значение дистанции в нужный формат
@@ -36,6 +45,16 @@ class Utils {
     return measureDistance === 'км'
       ? `${this.transformDistance(distance.kilometers)}`
       : `${this.transformDistance(distance.lunar)}`;
+  }
+
+  static asteroidClass(asteroidSize, isDanger) {
+    if (isDanger) {
+      return 'card_asteroid_lg';
+    }
+    if (!isDanger && asteroidSize >= 8000 && asteroidSize < 20000) {
+      return 'card_asteroid_md';
+    }
+    return '';
   }
 }
 
