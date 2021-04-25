@@ -1,5 +1,11 @@
 # Armaggedon
 
-### `npm start`
+Установка модулей `npm i`
 
-### `npm run build`
+Запуск dev сервера `npm run dev`
+
+Сборка проекта `npm run build`
+
+## Используемое API
+
+https://api.nasa.gov/
