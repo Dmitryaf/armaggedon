@@ -9,11 +9,15 @@
     border: none;
     border-bottom: 2px solid $gray;
     background: none;
-    margin-right: 5px;
+    margin: 0 5px 0 0;
     cursor: pointer;
 
+    @media (max-width: 768px) {
+      margin: 0 0 5px;
+    }
+
     &:last-child {
-      margin-right: 0;
+      margin: 0;
     }
 
     &_active {

@@ -11,14 +11,33 @@
   margin-bottom: 16px;
   overflow: hidden;
 
+  @media (max-width: 768px) {
+    max-width: 290px;
+    margin: 0 auto 20px;
+    padding: 0;
+  }
+
   &::before {
     content: url('images/dino.svg');
     position: absolute;
     left: 15px;
     bottom: 0;
     width: 56px;
-    height: 48px;
+
+    @media (max-width: 768px) {
+      top: 120px;
+      right: 6px;
+      left: auto;
+      bottom: auto;
+      width: 35px;
+      transform: scale(-1, 1);
+    }
   }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
 
   &::after {
     content: url('images/asteroid.svg');
@@ -27,6 +46,11 @@
     left: 121px;
     width: 71px;
     z-index: 0;
+
+    @media (max-width: 768px) {
+      top: 21px;
+      left: 26px;
+    }
   }
 
   &_asteroid_md {
@@ -34,6 +58,12 @@
       top: -80px;
       left: 72px;
       width: 186px;
+
+      @media (max-width: 768px) {
+        top: -26px;
+        left: 26px;
+        width: 108px;
+      }
     }
   }
 
@@ -44,6 +74,24 @@
       top: -487px;
       left: -99px;
       width: 598px;
+
+      @media (max-width: 768px) {
+        top: -266px;
+        left: -42px;
+        width: 338px;
+      }
+    }
+  }
+
+  &__content {
+    display: flex;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      background-color: $white;
+      width: 100%;
+      margin-top: 150px;
+      padding: 16px 16px 20px;
     }
   }
 
@@ -53,18 +101,33 @@
     margin-right: 100px;
     z-index: 1;
 
+    @media (max-width: 768px) {
+      margin-right: 0;
+    }
   }
 
   &__title {
-    margin-bottom: 20px;
-  }
-
-  &__link {
+    display: inline-block;
     font-size: 1.5rem;
+    font-weight: 700;
     color: $black;
     text-decoration: none;
     text-transform: uppercase;
     border-bottom: 2px solid $black;
+    margin-bottom: 20px;
+    transition: .3s;
+    user-select: none;
+
+    @media (max-width: 768px) {
+      position: absolute;
+      top: 108px;
+      margin-bottom: 0;
+    }
+
+    &:hover {
+      color: $gray;
+      border-color: $gray;
+    }
   }
 
   &__row {
@@ -74,6 +137,7 @@
 
   &__row-line {
     flex-grow: 1;
+    min-width: 40px;
     border-bottom: 1px dotted $black;
     margin: 0 0 3px 3px;
   }
