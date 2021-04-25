@@ -1,7 +1,10 @@
 import React from 'react';
 import { Route, Redirect, BrowserRouter, Switch } from 'react-router-dom';
+import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
+import AsteroidItem from './pages/AsteroidItem/AsteroidItem';
 import Asteroids from './pages/Asteroids/Asteroids';
+import Destruction from './pages/Destruction/Destruction';
 
 function App() {
   return (
@@ -11,9 +14,11 @@ function App() {
           <Header />
           <Switch>
             <Route path='/asteroids' component={Asteroids} />
-            <Route path='/destruction' />
+            <Route path='/destruction' component={Destruction} />
+            <Route path='/asteroid/:id' component={AsteroidItem} />
             <Redirect to='/asteroids' />
           </Switch>
+          <Footer />
         </div>
       </div>
     </BrowserRouter>

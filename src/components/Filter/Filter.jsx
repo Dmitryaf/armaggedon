@@ -1,16 +1,23 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleIsDanger } from '../../redux/dataReducer';
 import './Filter.scss';
 
 export default function Filter() {
   const dispatch = useDispatch();
-
-  const data = useSelector((state) => state.dataReducer.data);
+  const isDanger = useSelector((state) => state.dataReducer.isDanger);
 
   const clickHandler = () => {
-    dispatch(toggleIsDanger());
+    dispatch(toggleIsDanger(!isDanger));
   };
+
+  useEffect(() => {
+    return () => {
+      dispatch(toggleIsDanger(false));
+    };
+  }, []);
+
   return (
     <div className='filter' onClick={clickHandler}>
       <div className='filter__label'>

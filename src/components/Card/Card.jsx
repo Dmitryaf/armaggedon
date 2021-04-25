@@ -1,6 +1,11 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addToDesctructionCart } from '../../redux/dataReducer';
+import { NavLink } from 'react-router-dom';
+import {
+  addToDesctructionCart,
+  deleteFromDesctructionCart,
+  setCurrentItem,
+} from '../../redux/dataReducer';
 import Utils from '../../utils/utils';
 import './Card.scss';
 
@@ -8,7 +13,7 @@ export default function Card(props) {
   const dispatch = useDispatch();
   const measureData = useSelector((state) => state.dataReducer.measure);
 
-  const { id } = props;
+  const { id, isDestruction } = props;
   const {
     name_limited,
     estimated_diameter,
@@ -19,7 +24,7 @@ export default function Card(props) {
   // Данные астероида
   const filteredDate = Utils.filterDate(close_approach_data);
   const closestDateApproach = filteredDate[0]?.close_approach_date;
-  const transformedDate = Utils.transformDate(closestDateApproach);
+  const transformedDate = Utils.getTransformDate(closestDateApproach);
   const distance = Utils.getDistance(
     measureData,
     filteredDate[0].miss_distance
@@ -27,19 +32,10 @@ export default function Card(props) {
   const size = Math.floor(estimated_diameter.meters.estimated_diameter_max);
 
   // Определение класса астероида взависимости от размера
-  const asteroidClass = (asteroidSize) => {
-    if (is_potentially_hazardous_asteroid) {
-      return 'card_asteroid_lg';
-    }
-    if (
-      !is_potentially_hazardous_asteroid &&
-      asteroidSize >= 8000 &&
-      asteroidSize < 20000
-    ) {
-      return 'card_asteroid_md';
-    }
-    return '';
-  };
+  const asteroidClass = Utils.asteroidClass(
+    size,
+    is_potentially_hazardous_asteroid
+  );
 
   // Определение опасности астероида
   const isDanger = () => {
@@ -50,47 +46,60 @@ export default function Card(props) {
     dispatch(addToDesctructionCart(elementId));
   };
 
+  const deleteFromCart = (elementId) => {
+    dispatch(deleteFromDesctructionCart(elementId));
+  };
+
+  const setItem = () => {
+    dispatch(setCurrentItem(props.data));
+  };
+
   return (
-    <div className={`card ${asteroidClass(size)}`}>
-      <div className='card__info'>
-        <h2 className='card__title'>
-          <a href='/asteroid' className='card__link'>
+    <div className={`card ${asteroidClass}`}>
+      <div className='card__content'>
+        <div className='card__info'>
+          <NavLink
+            to={`/asteroid/${id}`}
+            onClick={setItem}
+            className='card__title'
+          >
             {name_limited}
-          </a>
-        </h2>
-        <div className='card__row'>
-          <div className='card__row-name'>Дата</div>
-          <span className='card__row-line'></span>
-          <div className='card__row-value'>{transformedDate}</div>
-        </div>
-        <div className='card__row'>
-          <div className='card__row-name'>Расстояние</div>
-          <span className='card__row-line'></span>
-          <div className='card__row-value'>
-            {distance}&nbsp;
-            {measureData}
+          </NavLink>
+
+          <div className='card__row'>
+            <div className='card__row-name'>Дата</div>
+            <span className='card__row-line'></span>
+            <div className='card__row-value'>{transformedDate}</div>
+          </div>
+          <div className='card__row'>
+            <div className='card__row-name'>Расстояние</div>
+            <span className='card__row-line'></span>
+            <div className='card__row-value'>
+              {distance}&nbsp;
+              {measureData}
+            </div>
+          </div>
+          <div className='card__row'>
+            <div className='card__row-name'>Размер</div>
+            <span className='card__row-line'></span>
+            <div className='card__row-value'>{size}&nbsp;м</div>
           </div>
         </div>
-        <div className='card__row'>
-          <div className='card__row-name'>Размер</div>
-          <span className='card__row-line'></span>
-          <div className='card__row-value'>{size}&nbsp;м</div>
+        <div className='card__rating'>
+          <h3 className='card__rating-title'>Оценка:</h3>
+          <div className='card__rating-text'>
+            {isDanger(is_potentially_hazardous_asteroid)}
+          </div>
+          <button
+            type='button'
+            onClick={() => {
+              isDestruction ? deleteFromCart(id) : addToCart(id);
+            }}
+            className='btn'
+          >
+            {isDestruction ? 'Удалить из списка' : 'На уничтожение'}
+          </button>
         </div>
-      </div>
-      <div className='card__rating'>
-        <h3 className='card__rating-title'>Оценка</h3>
-        <div className='card__rating-text'>
-          {isDanger(is_potentially_hazardous_asteroid)}
-        </div>
-        <button
-          type='button'
-          onClick={() => {
-            addToCart(id);
-          }}
-          className='btn'
-        >
-          На уничтожение
-        </button>
       </div>
     </div>
   );
