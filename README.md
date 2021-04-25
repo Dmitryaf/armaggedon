@@ -6,6 +6,8 @@
 
 Сборка проекта `npm run build`
 
+Используемая версия node.js `12.18.1`
+
 ## Используемое API
 
 https://api.nasa.gov/
