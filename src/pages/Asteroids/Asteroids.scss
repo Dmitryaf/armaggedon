@@ -1,9 +1,13 @@
 .asteroids {
+  flex: 1 0 auto;
 
   &__options {
     display: flex;
     justify-content: space-between;
     margin-bottom: 24px;
-  }
 
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
 }
