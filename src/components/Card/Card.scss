@@ -68,7 +68,6 @@
   }
 
   &_asteroid_lg {
-    background: $pinkGradient;
 
     &::after {
       top: -487px;
@@ -81,6 +80,10 @@
         width: 338px;
       }
     }
+  }
+
+  &_danger {
+    background: $pinkGradient;
   }
 
   &__content {
