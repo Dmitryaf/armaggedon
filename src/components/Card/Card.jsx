@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import {
@@ -53,6 +54,10 @@ export default function Card(props) {
   const setItem = () => {
     dispatch(setCurrentItem(props.data));
   };
+
+  useEffect(() => {
+    localStorage.setItem('currentItem', JSON.stringify(props.data));
+  }, [props.data]);
 
   return (
     <div className={`card ${asteroidClass}`}>
