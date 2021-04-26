@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setOffset } from '../../redux/dataReducer';
 import { getApiData } from '../../api/api';
@@ -26,23 +26,25 @@ export default function Asteroids() {
 
   const offsetItems = asteroidsItems.slice(0, offset);
 
-  const scrollHandler = (e) => {
-    if (
-      e.target.documentElement.scrollHeight -
-        (e.target.documentElement.scrollTop + window.innerHeight) <
-      50
-    ) {
-      dispatch(setOffset());
-    }
-  };
+  const scrollHandler = useCallback(
+    (e) => {
+      if (
+        e.target.documentElement.scrollHeight -
+          (e.target.documentElement.scrollTop + window.innerHeight) <
+        50
+      ) {
+        dispatch(setOffset());
+      }
+    },
+    [dispatch]
+  );
 
   useEffect(() => {
     dispatch(getApiData());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     document.addEventListener('scroll', scrollHandler);
-
     return () => {
       document.removeEventListener('scroll', scrollHandler);
     };
