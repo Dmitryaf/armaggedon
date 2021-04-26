@@ -6,7 +6,7 @@ import './AsteroidItem.scss';
 import { useSelector } from 'react-redux';
 
 export default function AsteroidItem() {
-  const cardData = JSON.parse(localStorage.getItem('currentItem'));
+  const cardData = useSelector((state) => state.dataReducer.currentItem);
   const measureData = useSelector((state) => state.dataReducer.measure);
 
   useEffect(() => {
