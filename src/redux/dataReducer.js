@@ -13,7 +13,6 @@ const initialState = {
   measure: 'км',
   offset: 5,
   isDanger: false,
-  isFetching: false,
 };
 
 export default function dataReducer(state = initialState, action) {
@@ -23,30 +22,31 @@ export default function dataReducer(state = initialState, action) {
         ...state,
         data: action.payload,
       };
+
     case SET_MEASURE:
       return {
         ...state,
         measure: action.payload,
       };
+
     case TOGGLE_IS_DANGER:
       return {
         ...state,
         isDanger: action.payload,
       };
+
     case ADD_TO_DESTRUCTION_CART:
       const asteroidItem = state.data.find((item) => item.id === action.id);
       const existedItem = state.destructionCart.find((item) => {
-        if (item) {
-          return item.id === action.id;
-        }
+        return item ? item.id === action.id : null;
       });
-
       return {
         ...state,
         destructionCart: existedItem
           ? [...state.destructionCart]
           : [...state.destructionCart, asteroidItem],
       };
+
     case DELETE_FROM_DESTRUCTION_CART:
       return {
         ...state,
@@ -54,11 +54,13 @@ export default function dataReducer(state = initialState, action) {
           ...state.destructionCart.filter((item) => item.id !== action.id),
         ],
       };
+
     case SET_OFFSET:
       return {
         ...state,
         offset: state.offset + 5,
       };
+
     case SET_CURRENT_ITEM:
       localStorage.setItem('currentItem', JSON.stringify(action.payload));
       return {
@@ -72,26 +74,31 @@ export default function dataReducer(state = initialState, action) {
 }
 
 export const setData = (data) => ({ type: SET_DATA, payload: data });
+
 export const setMeasure = (measure) => ({
   type: SET_MEASURE,
   payload: measure,
 });
+
 export const toggleIsDanger = (isDanger) => ({
   type: TOGGLE_IS_DANGER,
   payload: isDanger,
 });
+
 export const addToDestructionCart = (id) => ({
   type: ADD_TO_DESTRUCTION_CART,
   id,
 });
+
 export const deleteFromDestructionCart = (id) => ({
   type: DELETE_FROM_DESTRUCTION_CART,
   id,
 });
-export const setOffset = (isFetching) => ({
+
+export const setOffset = () => ({
   type: SET_OFFSET,
-  isFetching,
 });
+
 export const setCurrentItem = (data) => ({
   type: SET_CURRENT_ITEM,
   payload: data,
