@@ -16,7 +16,7 @@ export default function Filter() {
     return () => {
       dispatch(toggleIsDanger(false));
     };
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className='filter' onClick={clickHandler}>
