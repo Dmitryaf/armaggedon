@@ -9,12 +9,6 @@ export default function AsteroidItem() {
   const cardData = useSelector((state) => state.dataReducer.currentItem);
   const measureData = useSelector((state) => state.dataReducer.measure);
 
-  useEffect(() => {
-    return () => {
-      localStorage.removeItem('currentItem');
-    };
-  }, []);
-
   return (
     <div className='card-page'>
       <h1 className='card-page__title'>Карточка астероида</h1>
