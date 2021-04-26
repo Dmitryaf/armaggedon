@@ -51,11 +51,17 @@ class Utils {
 
   // Возвращает класс в зависимости от значения параметров
   static asteroidClass(asteroidSize, isDanger) {
-    if (isDanger) {
-      return 'card_asteroid_lg';
+    if (isDanger && asteroidSize > 3000 && asteroidSize < 10000) {
+      return 'card_asteroid_md card_danger';
     }
-    if (!isDanger && asteroidSize >= 8000 && asteroidSize < 20000) {
+    if (isDanger && asteroidSize >= 10000) {
+      return 'card_asteroid_lg card_danger';
+    }
+    if (!isDanger && asteroidSize > 3000 && asteroidSize < 10000) {
       return 'card_asteroid_md';
+    }
+    if (!isDanger && asteroidSize > 10000) {
+      return 'card_asteroid_lg';
     }
     return '';
   }
