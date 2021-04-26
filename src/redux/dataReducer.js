@@ -62,6 +62,7 @@ export default function dataReducer(state = initialState, action) {
       };
 
     case SET_CURRENT_ITEM:
+      localStorage.setItem('currentItem', JSON.stringify(action.payload));
       return {
         ...state,
         currentItem: action.payload,
