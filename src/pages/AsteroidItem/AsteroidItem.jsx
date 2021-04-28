@@ -1,13 +1,11 @@
 import React from 'react';
-import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import Card from '../../components/Card/Card';
 import ApproachList from '../../components/ApproachList/ApproachList';
 import './AsteroidItem.scss';
-import { useSelector } from 'react-redux';
 
 export default function AsteroidItem() {
   const cardData = useSelector((state) => state.dataReducer.currentItem);
-  const measureData = useSelector((state) => state.dataReducer.measure);
 
   return (
     <div className='card-page'>
@@ -19,7 +17,7 @@ export default function AsteroidItem() {
         isDestruction={false}
       />
       <h2 className='card-page__subtitle'>Список всех сближений</h2>
-      <ApproachList measure={measureData} data={cardData.close_approach_data} />
+      <ApproachList />
     </div>
   );
 }
