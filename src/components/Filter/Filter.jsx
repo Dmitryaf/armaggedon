@@ -22,7 +22,11 @@ export default function Filter() {
     <div className='filter' onClick={clickHandler}>
       <div className='filter__label'>
         Показать только опасные
-        <input type='checkbox' className='filter__input' />
+        <input
+          type='checkbox'
+          className='filter__input'
+          defaultChecked={isDanger}
+        />
         <span className='filter__mark'></span>
       </div>
     </div>
