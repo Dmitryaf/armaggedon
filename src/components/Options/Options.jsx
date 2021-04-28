@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { setMeasure } from '../../redux/dataReducer';
 import './Options.scss';
 
 export default function Options() {
   const dispatch = useDispatch();
-  const [activeBtn, setActiveBtn] = useState(0);
+  const measure = useSelector((state) => state.dataReducer.measure);
 
   const clickHandler = (measure, activeBtn) => {
-    setActiveBtn(activeBtn);
     dispatch(setMeasure(measure));
   };
 
@@ -16,18 +15,18 @@ export default function Options() {
     <div className='options'>
       <button
         type='button'
-        onClick={() => clickHandler('км', 0)}
+        onClick={() => clickHandler('км')}
         className={`options__btn ${
-          activeBtn === 0 ? 'options__btn_active' : ''
+          measure === 'км' ? 'options__btn_active' : ''
         }`}
       >
         Расстояние <span className='options__btn-text'>в километрах</span>,
       </button>
       <button
         type='button'
-        onClick={() => clickHandler('лунар', 1)}
+        onClick={() => clickHandler('лунар')}
         className={`options__btn ${
-          activeBtn === 1 ? 'options__btn_active' : ''
+          measure === 'лунар' ? 'options__btn_active' : ''
         }`}
       >
         <span className='options__btn-text'>в дистациях</span> до луны

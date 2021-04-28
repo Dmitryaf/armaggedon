@@ -12,6 +12,9 @@ import './Card.scss';
 export default function Card(props) {
   const dispatch = useDispatch();
   const measureData = useSelector((state) => state.dataReducer.measure);
+  const destructionCart = useSelector(
+    (state) => state.dataReducer.destructionCart
+  );
 
   const { id, isDestruction } = props;
 
@@ -21,6 +24,8 @@ export default function Card(props) {
     close_approach_data,
     is_potentially_hazardous_asteroid,
   } = props.data;
+
+  const inDestructionCart = destructionCart.find((item) => item.id === id);
 
   // Данные астероида
   const filteredDate = Utils.filterDate(close_approach_data);
@@ -91,15 +96,27 @@ export default function Card(props) {
           <div className='card__rating-text'>
             {isDanger(is_potentially_hazardous_asteroid)}
           </div>
-          <button
-            type='button'
-            onClick={() => {
-              isDestruction ? deleteFromCart(id) : addToCart(id);
-            }}
-            className='btn'
-          >
-            {isDestruction ? 'Удалить из списка' : 'На уничтожение'}
-          </button>
+          {isDestruction ? (
+            <button
+              type='button'
+              onClick={() => {
+                deleteFromCart(id);
+              }}
+              className='btn'
+            >
+              Удалить из списка
+            </button>
+          ) : (
+            <button
+              type='button'
+              onClick={() => {
+                addToCart(id);
+              }}
+              className={`btn ${inDestructionCart ? 'btn_disable' : ''}`}
+            >
+              {inDestructionCart ? 'В списке на уничтожение' : 'На уничтожение'}
+            </button>
+          )}
         </div>
       </div>
     </div>

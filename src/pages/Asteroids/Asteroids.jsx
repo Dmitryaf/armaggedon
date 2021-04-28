@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setOffset } from '../../redux/dataReducer';
+import { resetOffset, setOffset } from '../../redux/dataReducer';
 import { getApiData } from '../../api/api';
 import Filter from '../../components/Filter/Filter';
 import Options from '../../components/Options/Options';
@@ -49,6 +49,12 @@ export default function Asteroids() {
       document.removeEventListener('scroll', scrollHandler);
     };
   }, [scrollHandler]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetOffset());
+    };
+  }, [dispatch]);
 
   return (
     <div className='asteroids'>
