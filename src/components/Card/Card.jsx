@@ -14,6 +14,7 @@ export default function Card(props) {
   const measureData = useSelector((state) => state.dataReducer.measure);
 
   const { id, isDestruction } = props;
+
   const {
     name_limited,
     estimated_diameter,
@@ -23,7 +24,7 @@ export default function Card(props) {
 
   // Данные астероида
   const filteredDate = Utils.filterDate(close_approach_data);
-  const closestDateApproach = filteredDate[0]?.close_approach_date;
+  const closestDateApproach = filteredDate[0].close_approach_date;
   const transformedDate = Utils.getTransformDate(closestDateApproach);
   const distance = Utils.getDistance(
     measureData,
