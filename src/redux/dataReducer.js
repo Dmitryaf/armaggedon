@@ -4,6 +4,7 @@ const TOGGLE_IS_DANGER = 'TOGGLE_IS_DANGER';
 const ADD_TO_DESTRUCTION_CART = 'ADD_TO_DESTRUCTION_CART';
 const DELETE_FROM_DESTRUCTION_CART = 'DELETE_FROM_DESTRUCTION_CART';
 const SET_OFFSET = 'SET_OFFSET';
+const RESET_OFFSET = 'RESET_OFFSET';
 const SET_CURRENT_ITEM = 'SET_CURRENT_ITEM';
 
 const initialState = {
@@ -61,6 +62,12 @@ export default function dataReducer(state = initialState, action) {
         offset: state.offset + 5,
       };
 
+    case RESET_OFFSET:
+      return {
+        ...state,
+        offset: 5,
+      };
+
     case SET_CURRENT_ITEM:
       return {
         ...state,
@@ -96,6 +103,10 @@ export const deleteFromDestructionCart = (id) => ({
 
 export const setOffset = () => ({
   type: SET_OFFSET,
+});
+
+export const resetOffset = () => ({
+  type: RESET_OFFSET,
 });
 
 export const setCurrentItem = (data) => ({
