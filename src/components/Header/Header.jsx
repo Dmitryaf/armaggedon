@@ -6,7 +6,7 @@ export default function Header() {
   return (
     <header className='header'>
       <div className='header__left'>
-        <a href='/' className='header__logo'>
+        <a href='/armaggedon' className='header__logo'>
           armaggedon V
         </a>
         <span className='header__logo-descr'>
