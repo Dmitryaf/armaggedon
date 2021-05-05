@@ -1,5 +1,5 @@
-import React from 'react';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleIsDanger } from '../../redux/dataReducer';
 import './Filter.scss';
@@ -12,22 +12,20 @@ export default function Filter() {
     dispatch(toggleIsDanger(!isDanger));
   };
 
-  useEffect(() => {
-    return () => {
-      dispatch(toggleIsDanger(false));
-    };
+  useEffect(() => () => {
+    dispatch(toggleIsDanger(false));
   }, [dispatch]);
 
   return (
-    <div className='filter' onClick={clickHandler}>
-      <div className='filter__label'>
+    <div role="checkbox" aria-checked={isDanger} tabIndex={0} className="filter" onClick={clickHandler} onKeyPress={clickHandler}>
+      <div className="filter__label">
         Показать только опасные
         <input
-          type='checkbox'
-          className='filter__input'
+          type="checkbox"
+          className="filter__input"
           defaultChecked={isDanger}
         />
-        <span className='filter__mark'></span>
+        <span className="filter__mark" />
       </div>
     </div>
   );

@@ -1,7 +1,8 @@
 import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { resetOffset, setOffset } from '../../redux/dataReducer';
-import { getApiData } from '../../api/api';
+import getApiData from '../../api/api';
 import Filter from '../../components/Filter/Filter';
 import Options from '../../components/Options/Options';
 import Card from '../../components/Card/Card';
@@ -17,9 +18,8 @@ export default function Asteroids() {
   let asteroidsItems;
 
   if (isDanger) {
-    asteroidsItems = [...asteroidsData].filter((asteroid) => {
-      return asteroid.is_potentially_hazardous_asteroid === isDanger;
-    });
+    asteroidsItems = [...asteroidsData]
+      .filter((asteroid) => asteroid.is_potentially_hazardous_asteroid === isDanger);
   } else {
     asteroidsItems = asteroidsData;
   }
@@ -29,14 +29,14 @@ export default function Asteroids() {
   const scrollHandler = useCallback(
     (e) => {
       if (
-        e.target.documentElement.scrollHeight -
-          (e.target.documentElement.scrollTop + window.innerHeight) <
-        50
+        e.target.documentElement.scrollHeight
+          - (e.target.documentElement.scrollTop + window.innerHeight)
+        < 50
       ) {
         dispatch(setOffset());
       }
     },
-    [dispatch]
+    [dispatch],
   );
 
   useEffect(() => {
@@ -50,31 +50,27 @@ export default function Asteroids() {
     };
   }, [scrollHandler]);
 
-  useEffect(() => {
-    return () => {
-      dispatch(resetOffset());
-    };
+  useEffect(() => () => {
+    dispatch(resetOffset());
   }, [dispatch]);
 
   return (
-    <div className='asteroids'>
-      <div className='asteroids__options'>
+    <div className="asteroids">
+      <div className="asteroids__options">
         <Filter />
         <Options />
       </div>
-      <div className='asteroids__list'>
+      <div className="asteroids__list">
         {offsetItems.length < 1 && <Preloader />}
 
-        {offsetItems.map((asteroid) => {
-          return (
-            <Card
-              key={asteroid.id}
-              id={asteroid.id}
-              data={asteroid}
-              isDestruction={false}
-            />
-          );
-        })}
+        {offsetItems.map((asteroid) => (
+          <Card
+            key={asteroid.id}
+            id={asteroid.id}
+            data={asteroid}
+            isDestruction={false}
+          />
+        ))}
       </div>
     </div>
   );

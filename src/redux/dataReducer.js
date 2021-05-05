@@ -17,6 +17,9 @@ const initialState = {
 };
 
 export default function dataReducer(state = initialState, action) {
+  let asteroidItem;
+  let existedItem;
+
   switch (action.type) {
     case SET_DATA:
       return {
@@ -37,10 +40,8 @@ export default function dataReducer(state = initialState, action) {
       };
 
     case ADD_TO_DESTRUCTION_CART:
-      const asteroidItem = state.data.find((item) => item.id === action.id);
-      const existedItem = state.destructionCart.find((item) => {
-        return item ? item.id === action.id : null;
-      });
+      asteroidItem = state.data.find((item) => item.id === action.id);
+      existedItem = state.destructionCart.find((item) => (item ? item.id === action.id : null));
       return {
         ...state,
         destructionCart: existedItem

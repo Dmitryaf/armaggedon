@@ -7,29 +7,34 @@ export default function Options() {
   const dispatch = useDispatch();
   const measure = useSelector((state) => state.dataReducer.measure);
 
-  const clickHandler = (measure, activeBtn) => {
-    dispatch(setMeasure(measure));
+  const clickHandler = (measureVal) => {
+    dispatch(setMeasure(measureVal));
   };
 
   return (
-    <div className='options'>
+    <div className="options">
       <button
-        type='button'
+        type="button"
         onClick={() => clickHandler('км')}
         className={`options__btn ${
           measure === 'км' ? 'options__btn_active' : ''
         }`}
       >
-        Расстояние <span className='options__btn-text'>в километрах</span>,
+        Расстояние
+        {' '}
+        <span className="options__btn-text">в километрах</span>
+        ,
       </button>
       <button
-        type='button'
+        type="button"
         onClick={() => clickHandler('лунар')}
         className={`options__btn ${
           measure === 'лунар' ? 'options__btn_active' : ''
         }`}
       >
-        <span className='options__btn-text'>в дистациях</span> до луны
+        <span className="options__btn-text">в дистациях</span>
+        {' '}
+        до луны
       </button>
     </div>
   );

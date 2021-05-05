@@ -12,7 +12,7 @@ class Utils {
   // Фильтрация по актуальным датам
   static filterDate(dateArray) {
     return dateArray.filter(
-      (item) => item.close_approach_date >= this.getCurrentDate()
+      (item) => item.close_approach_date >= this.getCurrentDate(),
     );
   }
 
