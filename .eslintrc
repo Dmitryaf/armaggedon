@@ -1,20 +1,22 @@
 {
   "env": {
-    "browser": true,
-    "es6": true
-  },
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
+      "browser": true,
+      "es6": true
     },
-    "sourceType": "module"
-  },
-  "extends": [
-    "airbnb"
-],
-  "plugins": ["react"],
-  "rules": {
-    "linebreak-style": "off",
-    "react/prop-types": "off"
-  }
+    "extends": [
+      "airbnb"
+    ],
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "sourceType": "module"
+    },
+    "plugins": [
+      "react"
+    ],
+    "rules": {
+      "linebreak-style": "off",
+      "react/prop-types": "off"
+    }
 }
