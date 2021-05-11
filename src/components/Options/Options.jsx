@@ -1,9 +1,11 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setMeasure } from '../../redux/dataReducer';
-import './Options.scss';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-export default function Options() {
+import { setMeasure } from "../../redux/dataReducer";
+
+import "./Options.scss";
+
+function Options() {
   const dispatch = useDispatch();
   const measure = useSelector((state) => state.dataReducer.measure);
 
@@ -15,27 +17,20 @@ export default function Options() {
     <div className="options">
       <button
         type="button"
-        onClick={() => clickHandler('км')}
-        className={`options__btn ${
-          measure === 'км' ? 'options__btn_active' : ''
-        }`}
+        onClick={() => clickHandler("км")}
+        className={`options__btn ${measure === "км" ? "options__btn_active" : ""}`}
       >
-        Расстояние
-        {' '}
-        <span className="options__btn-text">в километрах</span>
-        ,
+        Расстояние <span className="options__btn-text">в километрах</span>,
       </button>
       <button
         type="button"
-        onClick={() => clickHandler('лунар')}
-        className={`options__btn ${
-          measure === 'лунар' ? 'options__btn_active' : ''
-        }`}
+        onClick={() => clickHandler("лунар")}
+        className={`options__btn ${measure === "лунар" ? "options__btn_active" : ""}`}
       >
-        <span className="options__btn-text">в дистациях</span>
-        {' '}
-        до луны
+        <span className="options__btn-text">в дистациях</span> до луны
       </button>
     </div>
   );
 }
+
+export default Options;

@@ -1,8 +1,9 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import './Header.scss';
+import React from "react";
+import { NavLink } from "react-router-dom";
 
-export default function Header() {
+import "./Header.scss";
+
+function Header() {
   return (
     <header className="header">
       <div className="header__left">
@@ -10,26 +11,19 @@ export default function Header() {
           armaggedon V
         </a>
         <span className="header__logo-descr">
-          Сервис мониторинга и уничтожения астероидов, опасно подлетающих к
-          Земле
+          Сервис мониторинга и уничтожения астероидов, опасно подлетающих к Земле
         </span>
       </div>
       <nav className="header__nav">
-        <NavLink
-          to="/asteroids"
-          activeClassName="header__link_active"
-          className="header__link"
-        >
+        <NavLink to="/asteroids" activeClassName="header__link_active" className="header__link">
           <span>Астероиды</span>
         </NavLink>
-        <NavLink
-          to="/destruction"
-          activeClassName="header__link_active"
-          className="header__link"
-        >
+        <NavLink to="/destruction" activeClassName="header__link_active" className="header__link">
           <span>Уничтожение</span>
         </NavLink>
       </nav>
     </header>
   );
 }
+
+export default Header;

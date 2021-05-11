@@ -1,15 +1,16 @@
-import React, { useEffect, useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { resetOffset, setOffset } from '../../redux/dataReducer';
-import getApiData from '../../api/api';
-import Filter from '../../components/Filter/Filter';
-import Options from '../../components/Options/Options';
-import Card from '../../components/Card/Card';
-import Preloader from '../../components/Preloader/Preloader';
-import './Asteroids.scss';
+import { resetOffset, setOffset } from "../../redux/dataReducer";
+import getApiData from "../../api/api";
+import Filter from "../../components/Filter/Filter";
+import Options from "../../components/Options/Options";
+import Card from "../../components/Card/Card";
+import Preloader from "../../components/Preloader/Preloader";
 
-export default function Asteroids() {
+import "./Asteroids.scss";
+
+function Asteroids() {
   const dispatch = useDispatch();
   const asteroidsData = useSelector((state) => state.dataReducer.data);
   const isDanger = useSelector((state) => state.dataReducer.isDanger);
@@ -18,8 +19,9 @@ export default function Asteroids() {
   let asteroidsItems;
 
   if (isDanger) {
-    asteroidsItems = [...asteroidsData]
-      .filter((asteroid) => asteroid.is_potentially_hazardous_asteroid === isDanger);
+    asteroidsItems = [...asteroidsData].filter(
+      (asteroid) => asteroid.is_potentially_hazardous_asteroid === isDanger
+    );
   } else {
     asteroidsItems = asteroidsData;
   }
@@ -29,29 +31,28 @@ export default function Asteroids() {
   const scrollHandler = useCallback(
     (e) => {
       if (
-        e.target.documentElement.scrollHeight
-          - (e.target.documentElement.scrollTop + window.innerHeight)
-        < 50
+        e.target.documentElement.scrollHeight -
+          (e.target.documentElement.scrollTop + window.innerHeight) <
+        50
       ) {
         dispatch(setOffset());
       }
     },
-    [dispatch],
+    [dispatch]
   );
 
   useEffect(() => {
-    dispatch(getApiData());
-  }, [dispatch]);
-
-  useEffect(() => {
-    document.addEventListener('scroll', scrollHandler);
+    document.addEventListener("scroll", scrollHandler);
     return () => {
-      document.removeEventListener('scroll', scrollHandler);
+      document.removeEventListener("scroll", scrollHandler);
     };
   }, [scrollHandler]);
 
-  useEffect(() => () => {
-    dispatch(resetOffset());
+  useEffect(() => {
+    dispatch(getApiData());
+    return () => {
+      dispatch(resetOffset());
+    };
   }, [dispatch]);
 
   return (
@@ -64,14 +65,11 @@ export default function Asteroids() {
         {offsetItems.length < 1 && <Preloader />}
 
         {offsetItems.map((asteroid) => (
-          <Card
-            key={asteroid.id}
-            id={asteroid.id}
-            data={asteroid}
-            isDestruction={false}
-          />
+          <Card key={asteroid.id} id={asteroid.id} data={asteroid} isDestruction={false} />
         ))}
       </div>
     </div>
   );
 }
+
+export default Asteroids;

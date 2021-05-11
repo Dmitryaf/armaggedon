@@ -1,6 +1,9 @@
-import React from 'react';
-import './Preloader.scss';
+import React from "react";
 
-export default function Preloader() {
+import "./Preloader.scss";
+
+function Preloader() {
   return <div className="preloader" />;
 }
+
+export default Preloader;

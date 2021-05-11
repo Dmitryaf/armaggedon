@@ -1,8 +1,9 @@
-import React from 'react';
-import './Footer.scss';
+import React from "react";
 
-export default function Footer() {
-  return (
-    <footer className="footer">2021 © Все права и планеты защищены</footer>
-  );
+import "./Footer.scss";
+
+function Footer() {
+  return <footer className="footer">2021 © Все права и планеты защищены</footer>;
 }
+
+export default Footer;

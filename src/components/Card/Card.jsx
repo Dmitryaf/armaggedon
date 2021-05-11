@@ -1,21 +1,20 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
 
 import {
   addToDestructionCart,
   deleteFromDestructionCart,
   setCurrentItem,
-} from '../../redux/dataReducer';
-import Utils from '../../utils/utils';
-import './Card.scss';
+} from "../../redux/dataReducer";
+import Utils from "../../utils/utils";
 
-export default function Card(props) {
+import "./Card.scss";
+
+function Card(props) {
   const dispatch = useDispatch();
   const measureData = useSelector((state) => state.dataReducer.measure);
-  const destructionCart = useSelector(
-    (state) => state.dataReducer.destructionCart,
-  );
+  const destructionCart = useSelector((state) => state.dataReducer.destructionCart);
 
   const { id, isDestruction, data } = props;
 
@@ -32,20 +31,14 @@ export default function Card(props) {
   const filteredDate = Utils.filterDate(closeApproachData);
   const closestDateApproach = filteredDate[0].close_approach_date;
   const transformedDate = Utils.getTransformDate(closestDateApproach);
-  const distance = Utils.getDistance(
-    measureData,
-    filteredDate[0].miss_distance,
-  );
+  const distance = Utils.getDistance(measureData, filteredDate[0].miss_distance);
   const size = Math.floor(estimatedDiameter.meters.estimated_diameter_max);
 
   // Определение класса астероида взависимости от размера
-  const asteroidClass = Utils.asteroidClass(
-    size,
-    isPotentiallyHazardousAsteroid,
-  );
+  const asteroidClass = Utils.asteroidClass(size, isPotentiallyHazardousAsteroid);
 
   // Определение опасности астероида
-  const isDanger = () => (isPotentiallyHazardousAsteroid ? 'опасен' : 'не опасен');
+  const isDanger = () => (isPotentiallyHazardousAsteroid ? "опасен" : "не опасен");
 
   const addToCart = (elementId) => {
     dispatch(addToDestructionCart(elementId));
@@ -63,11 +56,7 @@ export default function Card(props) {
     <div className={`card ${asteroidClass}`}>
       <div className="card__content">
         <div className="card__info">
-          <NavLink
-            to={`/asteroid/${id}`}
-            onClick={setItem}
-            className="card__title"
-          >
+          <NavLink to={`/asteroid/${id}`} onClick={setItem} className="card__title">
             {nameLimited}
           </NavLink>
 
@@ -81,7 +70,7 @@ export default function Card(props) {
             <span className="card__row-line" />
             <div className="card__row-value">
               {distance}
-&nbsp;
+              &nbsp;
               {measureData}
             </div>
           </div>
@@ -90,15 +79,13 @@ export default function Card(props) {
             <span className="card__row-line" />
             <div className="card__row-value">
               {size}
-&nbsp;м
+              &nbsp;м
             </div>
           </div>
         </div>
         <div className="card__rating">
           <h3 className="card__rating-title">Оценка:</h3>
-          <div className="card__rating-text">
-            {isDanger(isPotentiallyHazardousAsteroid)}
-          </div>
+          <div className="card__rating-text">{isDanger(isPotentiallyHazardousAsteroid)}</div>
           {isDestruction ? (
             <button
               type="button"
@@ -115,9 +102,9 @@ export default function Card(props) {
               onClick={() => {
                 addToCart(id);
               }}
-              className={`btn ${inDestructionCart ? 'btn_disable' : ''}`}
+              className={`btn ${inDestructionCart ? "btn_disable" : ""}`}
             >
-              {inDestructionCart ? 'В списке на уничтожение' : 'На уничтожение'}
+              {inDestructionCart ? "В списке на уничтожение" : "На уничтожение"}
             </button>
           )}
         </div>
@@ -125,3 +112,5 @@ export default function Card(props) {
     </div>
   );
 }
+
+export default Card;

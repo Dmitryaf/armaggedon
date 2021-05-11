@@ -1,17 +1,17 @@
-const SET_DATA = 'SET_DATA';
-const SET_MEASURE = 'SET_MEASURE';
-const TOGGLE_IS_DANGER = 'TOGGLE_IS_DANGER';
-const ADD_TO_DESTRUCTION_CART = 'ADD_TO_DESTRUCTION_CART';
-const DELETE_FROM_DESTRUCTION_CART = 'DELETE_FROM_DESTRUCTION_CART';
-const SET_OFFSET = 'SET_OFFSET';
-const RESET_OFFSET = 'RESET_OFFSET';
-const SET_CURRENT_ITEM = 'SET_CURRENT_ITEM';
+const SET_DATA = "SET_DATA";
+const SET_MEASURE = "SET_MEASURE";
+const TOGGLE_IS_DANGER = "TOGGLE_IS_DANGER";
+const ADD_TO_DESTRUCTION_CART = "ADD_TO_DESTRUCTION_CART";
+const DELETE_FROM_DESTRUCTION_CART = "DELETE_FROM_DESTRUCTION_CART";
+const SET_OFFSET = "SET_OFFSET";
+const RESET_OFFSET = "RESET_OFFSET";
+const SET_CURRENT_ITEM = "SET_CURRENT_ITEM";
 
 const initialState = {
   data: [],
   destructionCart: [],
   currentItem: {},
-  measure: 'км',
+  measure: "км",
   offset: 5,
   isDanger: false,
 };
@@ -52,9 +52,7 @@ export default function dataReducer(state = initialState, action) {
     case DELETE_FROM_DESTRUCTION_CART:
       return {
         ...state,
-        destructionCart: [
-          ...state.destructionCart.filter((item) => item.id !== action.id),
-        ],
+        destructionCart: [...state.destructionCart.filter((item) => item.id !== action.id)],
       };
 
     case SET_OFFSET:

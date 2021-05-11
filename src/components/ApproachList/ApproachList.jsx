@@ -1,13 +1,12 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { v4 as uuidv4 } from 'uuid';
+import React from "react";
+import { useSelector } from "react-redux";
+import { v4 as uuidv4 } from "uuid";
 
-import ApproachItem from './ApproachItem/ApproachItem';
-import './ApproachList.scss';
+import ApproachItem from "./ApproachItem/ApproachItem";
+import "./ApproachList.scss";
 
-export default function ApproachList() {
-  const cardData = useSelector((state) => state.dataReducer.currentItem)
-    .close_approach_data;
+function ApproachList() {
+  const cardData = useSelector((state) => state.dataReducer.currentItem).close_approach_data;
   const measureData = useSelector((state) => state.dataReducer.measure);
 
   return (
@@ -18,3 +17,5 @@ export default function ApproachList() {
     </div>
   );
 }
+
+export default ApproachList;

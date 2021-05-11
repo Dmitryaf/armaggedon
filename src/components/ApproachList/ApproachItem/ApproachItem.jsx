@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
-import Utils from '../../../utils/utils';
-import './ApproachItem.scss';
+import Utils from "../../../utils/utils";
+import "./ApproachItem.scss";
 
-export default function ApproachItem(props) {
+function ApproachItem(props) {
   const { measure, info } = props;
   const date = Utils.getTransformDate(info.close_approach_date);
   const speed = Math.floor(info.relative_velocity.kilometers_per_hour);
@@ -30,19 +30,13 @@ export default function ApproachItem(props) {
           <div className="approach-item__row">
             <div className="approach-item__row-name">Скорость</div>
             <span className="approach-item__row-line" />
-            <div className="approach-item__row-value">
-              {speed}
-              {' '}
-              км/ч
-            </div>
+            <div className="approach-item__row-value">{speed} км/ч</div>
           </div>
           <div className="approach-item__row">
             <div className="approach-item__row-name">Расстояние</div>
             <span className="approach-item__row-line" />
             <div className="approach-item__row-value">
-              {distance}
-              {' '}
-              {measure}
+              {distance} {measure}
             </div>
           </div>
           <div className="approach-item__row">
@@ -55,3 +49,5 @@ export default function ApproachItem(props) {
     </div>
   );
 }
+
+export default ApproachItem;

@@ -1,13 +1,11 @@
-import React from 'react';
-import {
-  Route, Redirect, BrowserRouter, Switch,
-} from 'react-router-dom';
+import React from "react";
+import { Route, Redirect, BrowserRouter, Switch } from "react-router-dom";
 
-import Footer from './Footer/Footer';
-import Header from './Header/Header';
-import AsteroidItem from '../pages/AsteroidItem/AsteroidItem';
-import Asteroids from '../pages/Asteroids/Asteroids';
-import Destruction from '../pages/Destruction/Destruction';
+import Footer from "./Footer/Footer";
+import Header from "./Header/Header";
+import AsteroidItem from "../pages/AsteroidItem/AsteroidItem";
+import Asteroids from "../pages/Asteroids/Asteroids";
+import Destruction from "../pages/Destruction/Destruction";
 
 function App() {
   return (
